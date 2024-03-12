@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
 
-  "name": "Chrome Extension TypeScript Starter",
-  "description": "Chrome Extension, TypeScript, Visual Studio Code",
-  "version": "1.0",
+  "name": "save-prompt",
+  "description": "save-prompt to notion",
+  "version": "0.1",
 
   "options_ui": {
     "page": "options.html"
@@ -16,8 +16,8 @@
 
   "content_scripts": [
       {
-          "matches": ["<all_urls>"],
-          "js": ["js/vendor.js", "js/content_script.js"]
+          "matches": ["https://www.midjourney.com/*"],
+          "js": ["js/content_script.js"]
       }
   ],
 
@@ -26,10 +26,11 @@
   },
 
   "permissions": [
-    "storage"
+    "contextMenus", "activeTab","storage"
   ],
 
   "host_permissions": [
-    "<all_urls>"
+    "https://www.midjourney.com/*",
+    "https://api.notion.com/v1/*"
   ]
 }
