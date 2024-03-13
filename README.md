@@ -9,11 +9,11 @@
 
 **Midjourney部分**
 
-![notion1](other\notion1.jpg)
+![notion1](./other/notion1.jpg)
 
 **Stable Diffuison部分**
 
-![notion2](other\notion2.jpg)
+![notion2](./other/notion2.jpg)
 
 
 
@@ -35,7 +35,7 @@
 
 步骤：Create new intergration -> 填写信息 -->提交
 
-<img src="other\notion6.jpg" style="zoom:67%;" />
+<img src="./other/notion6.jpg" style="zoom:67%;" />
 
 生成后 复制 **Secrets** 保存备用
 
@@ -45,11 +45,11 @@
 
 点击模板地址中右上角 **Duplicate**
 
-<img src="other\notion3.jpg" style="zoom: 80%;" />
+<img src="./other/notion3.jpg" style="zoom: 80%;" />
 
 **保存**到自己账户下后出现在左侧栏如下
 
-![](other\notion4.jpg)
+![](./other/notion4.jpg)
 
 **点击** Midjourney提示词页面，有两种方式获取数据库ID
 
@@ -59,7 +59,7 @@
 
 2. **点击** Midjourney提示词页面后，点击右上角 Share -> Publish，从链接地址获取
 
-![](other\notion5.jpg)
+![](./other/notion5.jpg)
 
 **同理可获取Stable Diffusion页面数据库的ID**
 
@@ -75,7 +75,7 @@
 
 添加一个 API key 保存备用
 
-![](other\c1.jpg)
+![](./other/c1.jpg)
 
 
 
@@ -83,7 +83,7 @@
 
 安装后填入配置信息，**点击保存设置**
 
-![](other\sp1.jpg)
+![](./other/sp1.jpg)
 
 ### 使用
 
@@ -91,13 +91,13 @@
 
 Midjourney例：https://www.midjourney.com/jobs/908e9b27-ae8b-4a7d-a9f8-145ca0efe6cf?index=0
 
-![](other\sp2.jpg)
+![](./other/sp2.jpg)
 
-扩展图标出现OK则成功（只出现2s）![](other\sp3.jpg)
+扩展图标出现OK则成功（只出现2s）![](./other/sp3.jpg)
 
 Civitai 例：**图片详情页面** **右击图片**
 
-![](other\c2.jpg)
+![](./other/c2.jpg)
 
 
 
