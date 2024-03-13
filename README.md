@@ -11,18 +11,22 @@
   - [功能](#功能)
   - [支持范围](#支持范围)
   - [安装与使用](#安装与使用)
-    - [准备](#准备)
-      - [notion API Secrets 申请](#notion-api-secrets-申请)
-      - [拷贝notion模板、记录数据库ID](#拷贝notion模板记录数据库id)
-      - [获取 Civitai Api Key （可选）](#获取-civitai-api-key-可选)
     - [安装插件](#安装插件)
       - [获取插件](#获取插件)
       - [安装](#安装)
+    - [获取配置](#获取配置)
+      - [notion intergration Secrets 申请](#notion-intergration-secrets-申请)
+      - [拷贝notion模板](#拷贝notion模板)
+      - [连接Notion页面到 intergration](#连接notion页面到-intergration)
+      - [获取Notion数据库ID](#获取notion数据库id)
+      - [获取 Civitai Api Key （可选）](#获取-civitai-api-key-可选)
     - [使用](#使用)
   - [限制](#限制)
     - [midjourney](#midjourney)
     - [civitai](#civitai)
+  - [常见问题](#常见问题)
   - [资源地址](#资源地址)
+
 
 
 ## 功能
