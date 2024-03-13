@@ -4,6 +4,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "extractPostIdAndCheckpointId") {
         // 提取postId、checkpointId
         const param: CivitaiPageExtarctParam = extractPostIdAndCheckpointIdFromPage();
+        console.log(param);
         sendResponse({ action: "extractPostIdAndCheckpointId", param: param });
     }
 });
