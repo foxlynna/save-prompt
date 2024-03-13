@@ -6,7 +6,21 @@
   </a>
   <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-blue?style=flat-square&logo=typescript&logoColor=white" />
 </p>    
-[toc]
+
+- [将提示词保存到Notion的插件](#将提示词保存到notion的插件)
+  - [功能](#功能)
+  - [支持范围](#支持范围)
+  - [安装与使用](#安装与使用)
+    - [准备](#准备)
+      - [notion API 申请](#notion-api-申请)
+      - [拷贝notion模板、记录数据库ID](#拷贝notion模板记录数据库id)
+      - [获取 Civitai Api Key （可选）](#获取-civitai-api-key-可选)
+    - [安装插件](#安装插件)
+    - [使用](#使用)
+  - [限制](#限制)
+    - [midjourney](#midjourney)
+    - [civitai](#civitai)
+  - [资源地址](#资源地址)
 
 
 
