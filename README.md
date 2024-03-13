@@ -7,15 +7,17 @@
   <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-blue?style=flat-square&logo=typescript&logoColor=white" />
 </p>    
 
-- [将提示词保存到Notion的插件](#将提示词保存到notion的插件)
+- [将提示词保存到Notion的Chrome插件](#将提示词保存到notion的chrome插件)
   - [功能](#功能)
   - [支持范围](#支持范围)
   - [安装与使用](#安装与使用)
     - [准备](#准备)
-      - [notion API 申请](#notion-api-申请)
+      - [notion API Secrets 申请](#notion-api-secrets-申请)
       - [拷贝notion模板、记录数据库ID](#拷贝notion模板记录数据库id)
       - [获取 Civitai Api Key （可选）](#获取-civitai-api-key-可选)
     - [安装插件](#安装插件)
+      - [获取插件](#获取插件)
+      - [安装](#安装)
     - [使用](#使用)
   - [限制](#限制)
     - [midjourney](#midjourney)
@@ -23,14 +25,32 @@
   - [资源地址](#资源地址)
 
 
-
-
 ## 功能
-将**Midjourney**、**Stable Diffusion** 图片的提示词、以及**其他元数据**信息保存到**notion**。
+- [Midjourney](https://www.midjourney.com/) 上保存图片提示词等信息；保存参数包括：
+  - 发布用户名
+  - 原始链接
+  - 提示词
+  - 提示词参数
+  - 图片访问地址
+  - 提示词翻译 ❌ todo
+- [C站](https://civitai.com/) 上保存图片提示词等信息；保存参数包括：
+  - 图片ID
+  - 图片访问地址
+  - 模型名称
+  - 模型地址
+  - 采样步数(steps)
+  - 正向提示词
+  - 反向提示词
+  - CFG
+  - 采样器(sampler)
+  - 降噪强度(denoisingStrength)
+  - 放大倍数(hiresUpscal)
+  - 放大器(hiresUpscaler)
+  - 提示词翻译 ❌ todo
 
 
 
-使用截图
+notion内截图
 
 **Midjourney部分**
 
@@ -43,18 +63,18 @@
 
 
 ## 支持范围
-- midjourney 网站
+- midjourney 网站 ***图片详情页使用***
     - https://www.midjourney.com/explore
     - https://www.midjourney.com/imagine
 
-- C站
+- C站 ***图片详情页使用***
     - https://civitai.com/
 
 ## 安装与使用
 
 ### 准备
 
-#### notion API 申请
+#### notion API Secrets 申请
 
 从页面上申请：https://www.notion.so/my-integrations
 
@@ -76,19 +96,19 @@
 
 ![](./other/notion4.jpg)
 
-**点击** Midjourney提示词页面，有两种方式获取数据库ID
+**点击** *Midjourney提示词* 页面，有两种方式获取数据库ID
 
-1. 从当前页面的url中获取：https://www.notion.so/username/ba64c7fbb5eb43f4a822b34d081674dx?v=d72a46a9679746a1b9428b6d991f720x
+1. 从当前页面的*url*中获取：https://www.notion.so/username/ba64c7fbb5eb43f4a822b34d081674dx?v=d72a46a9679746a1b9428b6d991f720x
 
 其中你的用户名后面跟的字符串就是：`ba64c7fbb5eb43f4a822b34d081674dx`
 
-2. **点击** Midjourney提示词页面后，点击右上角 Share -> Publish，从链接地址获取
+2. **点击** *Midjourney提示词*页面后，点击右上角 Share -> Publish，从链接地址获取
 
 ![](./other/notion5.jpg)
 
-**同理可获取Stable Diffusion页面数据库的ID**
 
 
+***同理可获取 notion Stable Diffusion页面 数据库的 ID***
 
 
 
@@ -106,15 +126,31 @@
 
 ### 安装插件
 
+#### 获取插件
+
 1. clone 项目自己打包；
 
    [README_Starter.md]: ./README_Starter.md
 
-2. 从 releases，下载 dist.zip。我自己上传后，再下载Win11报毒，不知道为啥。
+2. 从 本项目 *releases*，下载 *dist.zip*。
+
+#### 安装
+
+解压后，打开Chrome扩展程序页面，右上角开启开发者模式。
+
+加载已解压的扩展程序，选择解压后的 *dist* 目录。
+
+注意目录结构应为：
+
+- dist
+  - js
+  - 其他文件
 
 
 
-安装后填入配置信息，**点击保存设置**
+安装后从*扩展工具栏* 中点击此扩展：
+
+填入配置信息，**点击保存设置**
 
 ![](./other/sp1.jpg)
 
