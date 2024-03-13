@@ -1,4 +1,12 @@
-# 提示词保存插件
+# 将提示词保存到Notion的插件
+
+<p align="center">
+  <a href="LICENSE" target="_blank">
+    <img alt="MIT License" src="https://img.shields.io/github/license/yetone/openai-translator.svg?style=flat-square" />
+  </a> 
+      <!-- TypeScript Badge -->
+  <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-blue?style=flat-square&logo=typescript&logoColor=white" />
+</p>    
 
 ## 功能
 将**Midjourney**、**Stable Diffusion** 图片的提示词、以及**其他元数据**信息保存到**notion**。
@@ -80,6 +88,14 @@
 
 
 ### 安装插件
+
+1. clone 项目自己打包；
+
+   [README_Starter.md]: ./README_Starter.md
+
+2. 从 releases，下载 dist.zip。我自己上传后，再下载Win11报毒，不知道为啥。
+
+
 
 安装后填入配置信息，**点击保存设置**
 
