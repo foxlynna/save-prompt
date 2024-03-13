@@ -3,10 +3,13 @@
 <p align="center">
   <a href="LICENSE" target="_blank">
     <img alt="MIT License" src="https://img.shields.io/github/license/yetone/openai-translator.svg?style=flat-square" />
-  </a> 
-      <!-- TypeScript Badge -->
+  </a>
   <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-blue?style=flat-square&logo=typescript&logoColor=white" />
 </p>    
+[toc]
+
+
+
 
 ## 功能
 将**Midjourney**、**Stable Diffusion** 图片的提示词、以及**其他元数据**信息保存到**notion**。
