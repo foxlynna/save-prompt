@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { Utils } from './util';
+import { config } from './config';
 
 
 class NotionManager {
@@ -14,22 +15,27 @@ class NotionManager {
 
     public async initializeNotionClient(): Promise<void> {
         try {
-            const exists = await this.utils.checkNotionAuthExists();
+            const exists = await this.utils.checkStorageExists(config.notionAuth);
             if (exists) {
-                chrome.storage.local.get("notionAuth", (result) => {
-                    if (result.notionAuth) {
-                        this.notion = new Client({ auth: result.notionAuth });
-                        console.log("Notion auth updated.");
-                    } else {
-                        console.error("Notion auth not found.");
-                    }
-                });
+                const auth: string = await this.utils.getChromeStorage(config.notionAuth);
+                this.notion = new Client({ auth: auth });
+                console.log("Notion auth updated.");
             }
         } catch (error) {
             console.error('An error occurred:', error);
         }
     }
 
+    /**
+     * MJ保存提示词
+     * @param username 
+     * @param src 
+     * @param prompt 
+     * @param translation 
+     * @param param 
+     * @param imageUrl 
+     * @param databaseId 
+     */
     public async addToNotion(username: string, src: string, prompt: string, translation: string, param: string, imageUrl: string, databaseId: string) {
         try {
             console.log(this.notion);
@@ -87,6 +93,120 @@ class NotionManager {
             this.utils.showOkStatus();
         } catch (error: any) {
             console.error('Error adding entry to Notion', error.body);
+            this.utils.showErrorStatus();
+        }
+    }
+    /**
+     * Civitai保存提示词
+     * @param properties 
+     * @param databaseId 
+     */
+    public async addToNotionC(properties: any, databaseId: string) {
+        const notionProperties = {
+            "id": {
+                "title": [
+                    {
+                        "text": {
+                            "content": properties.id
+                        }
+                    }
+                ]
+            },
+            "url": {
+                "files": [
+                    {
+                        "name": "图片地址",
+                        "external": {
+                            "url": properties.url
+                        }
+                    }
+                ]
+            },
+            "model": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": properties.model
+                        }
+                    }
+                ]
+            },
+            "modelUrl": {
+                "url": properties.modelUrl
+            },
+            // "clipSkip": {
+            //     "number": properties.clipSkip
+            // },
+            "steps": {
+                "number": properties.steps
+            },
+            "prompt": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": properties.prompt
+                        }
+                    }
+                ]
+            },
+            "negativePrompt": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": properties.negativePrompt
+                        }
+                    }
+                ]
+            },
+            "cfg": {
+                "number": properties.cfg
+            },
+            "sampler": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": properties.sampler
+                        }
+                    }
+                ]
+            },
+            "denoisingStrength": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": properties.denoisingStrength
+                        }
+                    }
+                ]
+            },
+            "hiresUpscal": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": properties.hiresUpscal
+                        }
+                    }
+                ]
+            },
+            "hiresUpscaler": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": properties.hiresUpscaler
+                        }
+                    }
+                ]
+            }
+        };
+        try {
+            const response = await this.notion.pages.create({
+                parent: { database_id: databaseId },
+                properties: notionProperties
+            });
+            console.log(response);
+            this.utils.showOkStatus();
+        } catch (error) {
+            console.error(error);
             this.utils.showErrorStatus();
         }
     }

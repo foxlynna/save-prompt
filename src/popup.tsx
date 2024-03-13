@@ -11,12 +11,13 @@ const Popup = () => {
   const [notionAuth, setNotionAuth] = useState("");
   const [notionDatabaseIdMJ, setNotionDatabaseIdMJ] = useState("");
   const [notionDatabaseIdSD, setNotionDatabaseIdSD] = useState("");
+  const [civitaiApiKey, setCivitaiApiKey] = useState("");
 
   useEffect(() => {
     console.log("storage");
 
     // Load saved settings when the popup opens
-    chrome.storage.local.get(["notionAuth", "notionDatabaseIdMJ", "notionDatabaseIdSD"], (result) => {
+    chrome.storage.local.get(["notionAuth", "notionDatabaseIdMJ", "notionDatabaseIdSD", "civitaiApiKey"], (result) => {
       if (chrome.runtime.lastError) {
         console.error(chrome.runtime.lastError);
         return;
@@ -26,12 +27,14 @@ const Popup = () => {
         notionAuth: result.notionAuth || "",
         notionDatabaseIdMJ: result.notionDatabaseIdMJ || "",
         notionDatabaseIdSD: result.notionDatabaseIdSD || "",
+        civitaiApiKey: result.civitaiApiKey || "",
       });
       // 使用 form.setFieldsValue 更新表单的值
       form.setFieldsValue({
         notionAuth: result.notionAuth || "",
         notionDatabaseIdMJ: result.notionDatabaseIdMJ || "",
         notionDatabaseIdSD: result.notionDatabaseIdSD || "",
+        civitaiApiKey: result.civitaiApiKey || "",
       });
     });
   }, []);
@@ -85,6 +88,18 @@ const Popup = () => {
         <Input.Password
           placeholder="Enter Notion DatabaseID (SD)"
           value={notionDatabaseIdSD}
+          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+        />
+      </Form.Item>
+
+      <Form.Item
+        label="Civitai Api Key"
+        name="civitaiApiKey"
+        rules={[{ required: false, message: '请输入 Civitai Api Key' }]}
+      >
+        <Input.Password
+          placeholder="Enter Civitai Api Key"
+          value={civitaiApiKey}
           iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
         />
       </Form.Item>

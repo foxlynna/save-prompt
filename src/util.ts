@@ -3,46 +3,37 @@
  */
 class Utils {
     /**
-     * 判断chrome.storage.local中是否存在notionAuth
-     * @returns Promise<boolean>
-     */
-    public async checkNotionAuthExists(): Promise<boolean> {
+     * 获取chrome.storage.local中的值。
+     * @param key 要获取的值的键名。
+     * @returns Promise，当成功时解析为与键关联的值，如果出错或键不存在则解析为undefined。
+   */
+    public async getChromeStorage(key: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            // 尝试从chrome.storage.local获取notionAuth
-            chrome.storage.local.get('notionAuth', (result) => {
+            chrome.storage.local.get(key, (result) => {
                 if (chrome.runtime.lastError) {
-                    // 处理错误情况
                     reject(chrome.runtime.lastError);
                 } else {
-                    // 根据notionAuth是否为undefined或空字符串来解析
-                    console.log(result);
-
-                    resolve(result.notionAuth !== undefined && result.notionAuth !== '');
+                    // result[key] 可能是undefined，如果key不存在的话
+                    resolve(result[key]);
                 }
             });
         });
     }
 
     /**
-     * 判断chrome.storage.local中是否存在notionDatabaseIdMJ
-     * @returns Promise<boolean>
+     * 判断chrome.storage.local中是否存在key
+     * @param key 
+     * @returns 
      */
-    public async checkNotionMjDatabaseIdExists(): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            // 尝试从chrome.storage.local获取notionAuth
-            chrome.storage.local.get('notionDatabaseIdMJ', (result) => {
-                if (chrome.runtime.lastError) {
-                    // 处理错误情况
-                    reject(chrome.runtime.lastError);
-                } else {
-                    console.log(result);
-                    // 根据notionAuth是否为undefined或空字符串来解析
-                    resolve(result.notionDatabaseIdMJ !== undefined && result.notionDatabaseIdMJ !== '');
-                }
-            });
+    public async checkStorageExists(key: string): Promise<boolean> {
+        return new Promise((resolve) => {
+            chrome.storage.local.get(key, (result) => {
+                const value = result[key];
+                const exists = value !== undefined && value !== null && value !== '';
+                resolve(exists);
+              });
         });
-    }
-
+      }
 
     /**
      * 从url中提取jobId
@@ -85,6 +76,10 @@ class Utils {
         const regex = /https?:\/\/[^\s]+/g;
         // 将所有符合正则表达式的部分替换为空字符串
         return input.replace(regex, '');
+    }
+
+    public showSucessStatus(): void {
+        this.showBadge('成功', '#00FF00');
     }
 
     public showOkStatus(): void {

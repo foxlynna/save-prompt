@@ -1,36 +1,37 @@
 {
   "manifest_version": 3,
-
   "name": "save-prompt",
   "description": "save-prompt to notion",
   "version": "0.1",
-
   "options_ui": {
     "page": "options.html"
   },
-
   "action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
-
   "content_scripts": [
-      {
-          "matches": ["https://www.midjourney.com/*"],
-          "js": ["js/content_script.js"]
-      }
+    {
+      "matches": [
+        "https://www.midjourney.com/*",
+        "https://civitai.com/*"
+      ],
+      "js": [
+        "js/content_script.js"
+      ]
+    }
   ],
-
   "background": {
     "service_worker": "js/background.js"
   },
-
   "permissions": [
-    "contextMenus", "activeTab","storage"
+    "contextMenus",
+    "activeTab",
+    "storage"
   ],
-
   "host_permissions": [
     "https://www.midjourney.com/*",
+    "https://civitai.com/*",
     "https://api.notion.com/v1/*"
   ]
 }

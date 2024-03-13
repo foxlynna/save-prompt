@@ -1,5 +1,6 @@
 import { Utils } from './util';
 import { MidjourneyManager } from './midjourney';
+import { CivitaiManager } from './civitai';
 import { config } from './config';
 
 const utils = new Utils();
@@ -15,27 +16,22 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // 点击菜单
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === "savePrompt" && info.srcUrl && tab !== undefined && tab.id !== undefined) {
+  if (info.menuItemId === "savePrompt" && info.srcUrl && tab !== undefined && tab.id !== undefined && tab.url !== undefined) {
     const midjourneyManager = new MidjourneyManager();
-
+    const civitaiManager = new CivitaiManager();
     const imageUrl: string = info.srcUrl;
-    utils.checkNotionMjDatabaseIdExists().then((exists: boolean) => {
-      if (exists) {
-        chrome.storage.local.get('notionDatabaseIdMJ', (result) => {
-          if (chrome.runtime.lastError) {
-            // 处理错误情况
-            console.log(result.notionDatabaseIdMJ);
-          } else {
-            midjourneyManager.savePromptWithImage(imageUrl, config, result.notionDatabaseIdMJ);
-          }
-        });
+    const tabUrl: string = tab.url;
+    if (tabUrl.includes("midjourney")) {
+      midjourneyManager.processMj(imageUrl, tabUrl);
+    }
+    if (tabUrl.includes("civitai")) {
+      // 从网页提取postId和CheckpointId
+      chrome.tabs.sendMessage(tab.id, { action: "extractPostIdAndCheckpointId" }, function (response) {
+        console.log(response.param);
+        civitaiManager.processCivitai(imageUrl, tabUrl, response.param);
 
-      } else {
-        console.log("notionDatabaseIdMJ not found.");
-      }
-    }).catch(error => {
-      console.log('An error occurred:', error);
-    })
+      });
+    }
   }
 });
 
