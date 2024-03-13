@@ -1,4 +1,4 @@
-# 将提示词保存到Notion的插件
+# 将提示词保存到Notion的Chrome插件
 
 <p align="center">
   <a href="LICENSE" target="_blank">
