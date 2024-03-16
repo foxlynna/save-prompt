@@ -74,6 +74,10 @@ notion内截图
 
 ## 安装与使用
 
+视频教程
+
+[BV1Nr421n7V9](https://www.bilibili.com/video/BV1Nr421n7V9/?vd_source=3ea4b8cada48ac13acbca4da8d719890)
+
 ### 安装插件
 
 #### 获取插件
